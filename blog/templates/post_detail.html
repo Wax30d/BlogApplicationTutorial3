@@ -32,16 +32,17 @@
     <div class="col-md-8 card mb-4  mt-3 ">
       <div class="card-body">
         {% if new_comment %}
-        <div class="alert alert-success" role="alert">
-          Your comment is awaiting moderation
-        </div>
+          <div class="alert alert-success" role="alert">
+            Your comment is awaiting moderation
+          </div>
         {% else %}
-        <h3>Leave a comment</h3>
-        <form method="post" style="margin-top: 1.3em;">
-          {{ comment_form.as_p }}
-          {% csrf_token %}
-          <button type="submit" class="btn btn-primary  btn-lg">Submit</button>
-        </form>
+          {% load crispy_forms_tags %}
+          <h3>Leave a comment</h3>
+          <form method="post" style="margin-top: 1.3em;">
+            {{ comment_form | crispy }}
+            {% csrf_token %}
+            <button type="submit" class="btn btn-primary  btn-lg">Submit</button>
+          </form>
         {% endif %}
       </div>
     </div>
